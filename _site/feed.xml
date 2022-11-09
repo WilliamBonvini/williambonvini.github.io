@@ -3,10 +3,10 @@
   <channel>
     <title>William Bonvini</title>
     <description>A Jekyll theme for content-rich sites</description>
-    <link>http://williambonvini.github.io/williambonvini.github.io/</link>
-    <atom:link href="http://williambonvini.github.io/williambonvini.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 09 Nov 2022 15:33:37 -0500</pubDate>
-    <lastBuildDate>Wed, 09 Nov 2022 15:33:37 -0500</lastBuildDate>
+    <link>/williambonvini.github.io/</link>
+    <atom:link href="/williambonvini.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 09 Nov 2022 15:36:42 -0500</pubDate>
+    <lastBuildDate>Wed, 09 Nov 2022 15:36:42 -0500</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
   </channel>
