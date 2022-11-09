@@ -3,10 +3,10 @@
   <channel>
     <title>William Bonvini</title>
     <description>A Jekyll theme for content-rich sites</description>
-    <link>w/</link>
-    <atom:link href="w/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 09 Nov 2022 16:49:22 -0500</pubDate>
-    <lastBuildDate>Wed, 09 Nov 2022 16:49:22 -0500</lastBuildDate>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 09 Nov 2022 17:03:09 -0500</pubDate>
+    <lastBuildDate>Wed, 09 Nov 2022 17:03:09 -0500</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
   </channel>
