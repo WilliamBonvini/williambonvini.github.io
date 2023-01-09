@@ -5,8 +5,8 @@
     <description>A Jekyll theme for content-rich sites</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 09 Jan 2023 18:23:06 -0500</pubDate>
-    <lastBuildDate>Mon, 09 Jan 2023 18:23:06 -0500</lastBuildDate>
+    <pubDate>Mon, 09 Jan 2023 18:42:18 -0500</pubDate>
+    <lastBuildDate>Mon, 09 Jan 2023 18:42:18 -0500</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
@@ -33,16 +33,16 @@ I suggest you to watch these videos because they are extremely clear in my opini
 The computer system whose goal is to maximize a reward&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;&lt;em&gt;Environment&lt;/em&gt;&lt;/strong&gt; &lt;br /&gt;
 The system the agent interacts with (by performing &lt;em&gt;actions&lt;/em&gt;) and learns from (by observing changes in the environment’s state and collecting rewards)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Reward&lt;/em&gt;&lt;/strong&gt; $(R_t)$   &lt;br /&gt;
-a scalar feedback signal that indicates how well the agent is doing at timestep $t$.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Reward&lt;/em&gt;&lt;/strong&gt; \((R_t)\)   &lt;br /&gt;
+a scalar feedback signal that indicates how well the agent is doing at timestep \(t\).&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Shortly, at each timestep $t$ the agent&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;receives from the environment an observation $O_t$&lt;/li&gt;
-  &lt;li&gt;receives a reward $R_t$&lt;/li&gt;
-  &lt;li&gt;executes an action $A_t$.&lt;/li&gt;
+  &lt;li&gt;receives from the environment an observation \(O_t\)&lt;/li&gt;
+  &lt;li&gt;receives a reward \(R_t\)&lt;/li&gt;
+  &lt;li&gt;executes an action \(A_t\)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;This was a very high level description of the core entities involved in the reinforcement learning problem. But what is it used in? Here are some examples:&lt;/p&gt;
@@ -67,7 +67,7 @@ a scalar feedback signal that indicates how well the agent is doing at timestep 
 &lt;/ul&gt;
 
 &lt;p&gt;This type of system is modeled as a Markov decision process, namely a mathematical framework that models decision making problems.&lt;br /&gt;
-Look at the image below. It represents a graph with three nodes $(S_0, S_1, S_2)$. From each state you can perform some actions that will lead you to another state with a certain probability. We associate a reward (the orange arrows) to some of these actions.&lt;/p&gt;
+Look at the image below. It represents a graph with three nodes \((S_0, S_1, S_2)\). From each state you can perform some actions that will lead you to another state with a certain probability. We associate a reward (the orange arrows) to some of these actions.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/mdp.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -76,22 +76,22 @@ Look at the image below. It represents a graph with three nodes $(S_0, S_1, S_2)
 &lt;p&gt;Rigorously, a Markov Decision Process is defined as a&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;a set of states $S$ called the &lt;em&gt;set space&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;a set of actions $A$ called the &lt;em&gt;action space&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;a set of states \(S\) called the &lt;em&gt;set space&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;a set of actions \(A\) called the &lt;em&gt;action space&lt;/em&gt;&lt;/li&gt;
   &lt;li&gt;
     &lt;table&gt;
       &lt;tbody&gt;
         &lt;tr&gt;
-          &lt;td&gt;a transition probability distribution $P(s’&lt;/td&gt;
-          &lt;td&gt;s_t,a_t): S\times A \to S$ that tells you what is the probability to go to state $s’$ if you perform action $a_t$ in state $s_t$.&lt;/td&gt;
+          &lt;td&gt;a transition probability distribution $$P(s’&lt;/td&gt;
+          &lt;td&gt;s_t,a_t): S\times A \to S\(that tells you what is the probability to go to state\)s’\(if you perform action\)a_t\(in state\)s_t$$.&lt;/td&gt;
         &lt;/tr&gt;
       &lt;/tbody&gt;
     &lt;/table&gt;
   &lt;/li&gt;
-  &lt;li&gt;A reward function $R(s_t, a_t, s’):S \times A \times S \to \mathbb{R}$ that returns a scalar feedback (an immediate reward) when you perform action $a_t$ in state $s_t$ and end up in state $s’$.&lt;/li&gt;
+  &lt;li&gt;A reward function \(R(s_t, a_t, s&apos;):S \times A \times S \to \mathbb{R}\) that returns a scalar feedback (an immediate reward) when you perform action \(a_t\) in state \(s_t\) and end up in state \(s&apos;\).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Moreover, the transition probability distribution $P$ must satisfy the Markov property
+&lt;p&gt;Moreover, the transition probability distribution \(P\) must satisfy the Markov property
 \(P(s&apos; |s_t, a_t) = P(s&apos;|\mathcal{H}_t, a_t)\)&lt;/p&gt;
 
 \[\begin{equation}
@@ -101,13 +101,13 @@ R(s&apos;|s_t, a_t) = R(s&apos;|\mathcal{H}_t, a_t)
 &lt;p&gt;This means that&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;the state $s’$ into which we transition after performing action $a_t$ from state $s_t$&lt;/li&gt;
-  &lt;li&gt;the obtained reward $r$&lt;/li&gt;
+  &lt;li&gt;the state \(s&apos;\) into which we transition after performing action $a_t$ from state \(s_t\)&lt;/li&gt;
+  &lt;li&gt;the obtained reward \(r\)&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;are independent from the history of the game (namely, the sequence of actions, obervations, and rewards obtained so far).&lt;/p&gt;
 
-&lt;p&gt;In other words, $s_t$ contains all the information we need to choose what action to perform next.&lt;/p&gt;
+&lt;p&gt;In other words, \(s_t\) contains all the information we need to choose what action to perform next.&lt;/p&gt;
 
 &lt;p&gt;We have described extensively how we model an environment in Reinforcement Learning. It’s important though to note that the agent could have full knowledge about the environment state or not.&lt;/p&gt;
 
@@ -126,7 +126,7 @@ The environment state can still be Markovian, but the agent does not know it.&lt
 
     &lt;p&gt;In this case the agent state is a function of the history.&lt;/p&gt;
 
-    &lt;p&gt;For instance $S_t=O_t$, more generally:&lt;br /&gt;
+    &lt;p&gt;For instance \(S_t=O_t\), more generally:&lt;br /&gt;
 \(S_{t+1}=u(S_t, A_t, R_{t+1}, O_{t+1})\)&lt;/p&gt;
 
     &lt;p&gt;The agent state is often much smaller the environment state.&lt;/p&gt;
@@ -158,7 +158,7 @@ These two agent states are not Markovian because the only way we have to underst
 
 &lt;h3 id=&quot;the-value-function&quot;&gt;The Value Function&lt;/h3&gt;
 
-&lt;p&gt;The value function is a function $v(s): S \to \mathbb{R}$ that returns for each state $s \in S$ the expected cumulative reward the agent will get by finding himself in such state.
+&lt;p&gt;The value function is a function \(v(s): S \to \mathbb{R}\) that returns for each state \(s \in S\) the expected cumulative reward the agent will get by finding himself in such state.
 $$
 \begin{equation}
 \begin{split}
@@ -171,12 +171,12 @@ $$&lt;/p&gt;
 
 &lt;h3 id=&quot;the-policy&quot;&gt;The Policy&lt;/h3&gt;
 
-&lt;p&gt;A policy is a function $\pi: S \to A$ that, given a state $s$, tells the agent what is the optimal action $a$ to perform (the optimal action is the one that will lead him to the state with the highest expected cumulative reward). &lt;br /&gt;
-A policy can be deterministic (the state-action mapping is univoque) or stochastic. In this latter case you will get in output a probability distribution over the actions set $A$.&lt;/p&gt;
+&lt;p&gt;A policy is a function \(\pi: S \to A\) that, given a state \(s\), tells the agent what is the optimal action \(a\) to perform (the optimal action is the one that will lead him to the state with the highest expected cumulative reward). &lt;br /&gt;
+A policy can be deterministic (the state-action mapping is univoque) or stochastic. In this latter case you will get in output a probability distribution over the actions set \(A\).&lt;/p&gt;
 
 &lt;h3 id=&quot;the-q-value&quot;&gt;The Q value&lt;/h3&gt;
 
-&lt;p&gt;A function that maps a state action pair $(s, a)$ to the expected cumulative reward.
+&lt;p&gt;A function that maps a state action pair \((s, a)\) to the expected cumulative reward.
 \(\begin{equation}
 \begin{split}
 q(s,a) &amp;amp;= \mathbb{E}[G_t|S_t=s, A_t=a] \\

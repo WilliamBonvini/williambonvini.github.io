@@ -121,16 +121,16 @@ I suggest you to watch these videos because they are extremely clear in my opini
 The computer system whose goal is to maximize a reward</li>
   <li><strong><em>Environment</em></strong> <br />
 The system the agent interacts with (by performing <em>actions</em>) and learns from (by observing changes in the environment’s state and collecting rewards)</li>
-  <li><strong><em>Reward</em></strong> $(R_t)$   <br />
-a scalar feedback signal that indicates how well the agent is doing at timestep $t$.</li>
+  <li><strong><em>Reward</em></strong> \((R_t)\)   <br />
+a scalar feedback signal that indicates how well the agent is doing at timestep \(t\).</li>
 </ul>
 
 <p>Shortly, at each timestep $t$ the agent</p>
 
 <ul>
-  <li>receives from the environment an observation $O_t$</li>
-  <li>receives a reward $R_t$</li>
-  <li>executes an action $A_t$.</li>
+  <li>receives from the environment an observation \(O_t\)</li>
+  <li>receives a reward \(R_t\)</li>
+  <li>executes an action \(A_t\)</li>
 </ul>
 
 <p>This was a very high level description of the core entities involved in the reinforcement learning problem. But what is it used in? Here are some examples:</p>
@@ -155,7 +155,7 @@ a scalar feedback signal that indicates how well the agent is doing at timestep 
 </ul>
 
 <p>This type of system is modeled as a Markov decision process, namely a mathematical framework that models decision making problems.<br />
-Look at the image below. It represents a graph with three nodes $(S_0, S_1, S_2)$. From each state you can perform some actions that will lead you to another state with a certain probability. We associate a reward (the orange arrows) to some of these actions.</p>
+Look at the image below. It represents a graph with three nodes \((S_0, S_1, S_2)\). From each state you can perform some actions that will lead you to another state with a certain probability. We associate a reward (the orange arrows) to some of these actions.</p>
 
 <p><img src="/assets/2022-12-03-Introduction-to-RL/mdp.png" alt="" /></p>
 
@@ -164,22 +164,22 @@ Look at the image below. It represents a graph with three nodes $(S_0, S_1, S_2)
 <p>Rigorously, a Markov Decision Process is defined as a</p>
 
 <ul>
-  <li>a set of states $S$ called the <em>set space</em></li>
-  <li>a set of actions $A$ called the <em>action space</em></li>
+  <li>a set of states \(S\) called the <em>set space</em></li>
+  <li>a set of actions \(A\) called the <em>action space</em></li>
   <li>
     <table>
       <tbody>
         <tr>
-          <td>a transition probability distribution $P(s’</td>
-          <td>s_t,a_t): S\times A \to S$ that tells you what is the probability to go to state $s’$ if you perform action $a_t$ in state $s_t$.</td>
+          <td>a transition probability distribution $$P(s’</td>
+          <td>s_t,a_t): S\times A \to S\(that tells you what is the probability to go to state\)s’\(if you perform action\)a_t\(in state\)s_t$$.</td>
         </tr>
       </tbody>
     </table>
   </li>
-  <li>A reward function $R(s_t, a_t, s’):S \times A \times S \to \mathbb{R}$ that returns a scalar feedback (an immediate reward) when you perform action $a_t$ in state $s_t$ and end up in state $s’$.</li>
+  <li>A reward function \(R(s_t, a_t, s'):S \times A \times S \to \mathbb{R}\) that returns a scalar feedback (an immediate reward) when you perform action \(a_t\) in state \(s_t\) and end up in state \(s'\).</li>
 </ul>
 
-<p>Moreover, the transition probability distribution $P$ must satisfy the Markov property
+<p>Moreover, the transition probability distribution \(P\) must satisfy the Markov property
 \(P(s' |s_t, a_t) = P(s'|\mathcal{H}_t, a_t)\)</p>
 
 \[\begin{equation}
@@ -189,13 +189,13 @@ R(s'|s_t, a_t) = R(s'|\mathcal{H}_t, a_t)
 <p>This means that</p>
 
 <ol>
-  <li>the state $s’$ into which we transition after performing action $a_t$ from state $s_t$</li>
-  <li>the obtained reward $r$</li>
+  <li>the state \(s'\) into which we transition after performing action $a_t$ from state \(s_t\)</li>
+  <li>the obtained reward \(r\)</li>
 </ol>
 
 <p>are independent from the history of the game (namely, the sequence of actions, obervations, and rewards obtained so far).</p>
 
-<p>In other words, $s_t$ contains all the information we need to choose what action to perform next.</p>
+<p>In other words, \(s_t\) contains all the information we need to choose what action to perform next.</p>
 
 <p>We have described extensively how we model an environment in Reinforcement Learning. It’s important though to note that the agent could have full knowledge about the environment state or not.</p>
 
@@ -214,7 +214,7 @@ The environment state can still be Markovian, but the agent does not know it.</p
 
     <p>In this case the agent state is a function of the history.</p>
 
-    <p>For instance $S_t=O_t$, more generally:<br />
+    <p>For instance \(S_t=O_t\), more generally:<br />
 \(S_{t+1}=u(S_t, A_t, R_{t+1}, O_{t+1})\)</p>
 
     <p>The agent state is often much smaller the environment state.</p>
@@ -246,7 +246,7 @@ These two agent states are not Markovian because the only way we have to underst
 
 <h3 id="the-value-function">The Value Function</h3>
 
-<p>The value function is a function $v(s): S \to \mathbb{R}$ that returns for each state $s \in S$ the expected cumulative reward the agent will get by finding himself in such state.
+<p>The value function is a function \(v(s): S \to \mathbb{R}\) that returns for each state \(s \in S\) the expected cumulative reward the agent will get by finding himself in such state.
 $$
 \begin{equation}
 \begin{split}
@@ -259,12 +259,12 @@ $$</p>
 
 <h3 id="the-policy">The Policy</h3>
 
-<p>A policy is a function $\pi: S \to A$ that, given a state $s$, tells the agent what is the optimal action $a$ to perform (the optimal action is the one that will lead him to the state with the highest expected cumulative reward). <br />
-A policy can be deterministic (the state-action mapping is univoque) or stochastic. In this latter case you will get in output a probability distribution over the actions set $A$.</p>
+<p>A policy is a function \(\pi: S \to A\) that, given a state \(s\), tells the agent what is the optimal action \(a\) to perform (the optimal action is the one that will lead him to the state with the highest expected cumulative reward). <br />
+A policy can be deterministic (the state-action mapping is univoque) or stochastic. In this latter case you will get in output a probability distribution over the actions set \(A\).</p>
 
 <h3 id="the-q-value">The Q value</h3>
 
-<p>A function that maps a state action pair $(s, a)$ to the expected cumulative reward.
+<p>A function that maps a state action pair \((s, a)\) to the expected cumulative reward.
 \(\begin{equation}
 \begin{split}
 q(s,a) &amp;= \mathbb{E}[G_t|S_t=s, A_t=a] \\
