@@ -13,6 +13,7 @@ excerpt_separator: <!--more-->  # you can specify your own separator, of course.
 exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'UploadToGithub.Rakefile', 'README.md']
 post:
   template: _post.txt
+  mathjax: true
   extension: md
 page:
   template: _page.txt
@@ -25,3 +26,5 @@ transfer:
   settings: -av
   source: _site/
   destination: ~/Git/williambonvini.github.com/
+
+  

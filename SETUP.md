@@ -1,3 +1,6 @@
+Run the following commands on your terminal to set up your environment
+
+```bash
 gem install jekyll -v 4.2.0
 gem install em-websocket -v 0.5.2
 gem install i18n -v 1.8.9
@@ -11,6 +14,14 @@ gem install unicode-display_width -v 1.7.0
 gem install ffi -v 1.15.0
 gem install rb-fsevent -v 0.10.4
 gem install sassc -v 2.4.0
+```
 
+
+
+Run the website
+
+```bash
 bundle exec jekyll build
 bundle exec jekyll serve
+```
+
