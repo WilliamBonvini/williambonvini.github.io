@@ -7,7 +7,9 @@ categories: Reinforcement Learning
 In this blogpost we will introduce the most important concepts in Reinforcement learning and provide some real world examples, to show you how and when it is currently being used.  
 
 This series is based on the lectures that DeepMind held for UCL in 2020, they are freely available at [this](www.google.it) YouTube link.   
-I suggest you to watch these videos because they are extremely clear in my opinion. I chose to write this series of blogposts to offer a readable format of the content of DeepMind's lectures. This is also the way I like to learn new things: First i study them, then I try to reformulate the concepts in a well organized and concise fashion.  
+I suggest you to watch these videos because they are extremely clear in my opinion. I chose to write this series of blogposts to offer a readable format of the content of DeepMind's lectures. This is also the way I like to learn new things: First i study them, then I try to reformulate the concepts in a well organized and concise fashion.   
+
+  
 
 ### Introduction
 
@@ -28,7 +30,7 @@ Let's describe it, introducing right away some terminology:
 * ***Reward*** $$(R_t)$$     
   a scalar feedback signal that indicates how well the agent is doing at timestep $$t$$.
 
-Shortly, at each timestep $t$ the agent 
+Shortly, at each timestep $$t$$ the agent 
 
 * receives from the environment an observation $$O_t$$ 
 * receives a reward $$R_t$$ 
@@ -42,7 +44,9 @@ This was a very high level description of the core entities involved in the rein
 * [Make a robot walk](https://www.mathworks.com/help/reinforcement-learning/ug/train-biped-robot-to-walk-using-reinforcement-learning-agents.html)
 * [Play video or board games](https://www.youtube.com/watch?v=V1eYniJ0Rnk)
 
-Now let's delve into a lower level description, where I will introduce the mathematical terminology that will be used throughout the next episodes.
+Now let's delve into a lower level description, where I will introduce the mathematical terminology that will be used throughout the next episodes.  
+
+
 
 ### The Environment
 
@@ -111,7 +115,7 @@ We have described extensively how we model an environment in Reinforcement Learn
 
   The agent state is often much smaller the environment state.
 
-
+ 
 
 ### An example of Partially Observable Environment
 
@@ -134,7 +138,9 @@ These two agent states are not Markovian because the only way we have to underst
 
 You could not construct a Markov agent state in this maze.
 
-To deal with partial observability, an agent can construct a suitable state representation $\to$ this is when the concepts of *value function* and *action value function* come in handy.
+To deal with partial observability, an agent can construct a suitable state representation $\to$ this is when the concepts of *value function* and *action value function* come in handy.  
+
+
 
 ### The Value Function
 
@@ -149,6 +155,7 @@ v(s) &= \mathbb{E}[G_t | S_t = s] \\
 \end{equation}
 $$
 
+  
 
 ### The Policy
 
