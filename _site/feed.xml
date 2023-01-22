@@ -5,26 +5,26 @@
     <description>A Jekyll theme for content-rich sites</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 11 Jan 2023 17:00:18 -0500</pubDate>
-    <lastBuildDate>Wed, 11 Jan 2023 17:00:18 -0500</lastBuildDate>
+    <pubDate>Sun, 22 Jan 2023 08:59:06 +0000</pubDate>
+    <lastBuildDate>Sun, 22 Jan 2023 08:59:06 +0000</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
         <title>Introduction to Reinforcement Learning</title>
-        <description>&lt;h2 id=&quot;reinforcement-learning&quot;&gt;Reinforcement Learning&lt;/h2&gt;
+        <description>&lt;h1 id=&quot;reinforcement-learning&quot;&gt;Reinforcement Learning&lt;/h1&gt;
 
 &lt;p&gt;In this blogpost we will introduce the most important concepts in Reinforcement learning and provide some real world examples, to show you how and when it is currently being used.&lt;/p&gt;
 
-&lt;p&gt;This series is based on the lectures that DeepMind held for UCL in 2020, they are freely available at &lt;a href=&quot;www.google.it&quot;&gt;this&lt;/a&gt; YouTube link. &lt;br /&gt;
+&lt;p&gt;This series is based on the lectures that DeepMind held for UCL in 2020, they are freely available at &lt;a href=&quot;https://www.youtube.com/watch?v=TCCjZe0y4Qc&amp;amp;t=2641s&quot;&gt;this&lt;/a&gt; YouTube link. &lt;br /&gt;
 I suggest you to watch these videos because they are extremely clear in my opinion. I chose to write this series of blogposts to offer a readable format of the content of DeepMind’s lectures. This is also the way I like to learn new things: First i study them, then I try to reformulate the concepts in a well organized and concise fashion.&lt;/p&gt;
 
-&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;Reinforcement Learning is the branch of Computer Science that studies how to learn to perform tasks by modeling them as the maximization of a reward obtained by interacting with an environment.&lt;/p&gt;
 
 &lt;p&gt;This interaction can be summarized in the following diagram:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/agent_environment_diagram.png&quot; alt=&quot;prova&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/agent_environment_diagram.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Let’s describe it, introducing right away some terminology:&lt;/p&gt;
 
@@ -37,7 +37,7 @@ The system the agent interacts with (by performing &lt;em&gt;actions&lt;/em&gt;)
 a scalar feedback signal that indicates how well the agent is doing at timestep \(t\).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Shortly, at each timestep $t$ the agent&lt;/p&gt;
+&lt;p&gt;Shortly, at each timestep \(t\) the agent&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;receives from the environment an observation \(O_t\)&lt;/li&gt;
@@ -57,7 +57,7 @@ a scalar feedback signal that indicates how well the agent is doing at timestep 
 
 &lt;p&gt;Now let’s delve into a lower level description, where I will introduce the mathematical terminology that will be used throughout the next episodes.&lt;/p&gt;
 
-&lt;h3 id=&quot;the-environment&quot;&gt;The Environment&lt;/h3&gt;
+&lt;h1 id=&quot;the-environment&quot;&gt;The Environment&lt;/h1&gt;
 
 &lt;p&gt;It is a system in which you can perform actions and, consequently, it will&lt;/p&gt;
 
@@ -67,9 +67,10 @@ a scalar feedback signal that indicates how well the agent is doing at timestep 
 &lt;/ul&gt;
 
 &lt;p&gt;This type of system is modeled as a Markov decision process, namely a mathematical framework that models decision making problems.&lt;br /&gt;
-Look at the image below. It represents a graph with three nodes \((S_0, S_1, S_2)\). From each state you can perform some actions that will lead you to another state with a certain probability. We associate a reward (the orange arrows) to some of these actions.&lt;/p&gt;
+Look at the image below. It represents a graph with three nodes \((S_0, S_1, S_2)\). &lt;br /&gt;
+From each state you can perform some actions that will lead you to another state with a certain probability. We associate a reward (the orange arrows) to some of these actions.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/mdp.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/mdp.png&quot; width=&quot;80%&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;(Image source: wikipedia)&lt;/p&gt;
 
@@ -78,21 +79,14 @@ Look at the image below. It represents a graph with three nodes \((S_0, S_1, S_2
 &lt;ul&gt;
   &lt;li&gt;a set of states \(S\) called the &lt;em&gt;set space&lt;/em&gt;&lt;/li&gt;
   &lt;li&gt;a set of actions \(A\) called the &lt;em&gt;action space&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;
-    &lt;table&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;a transition probability distribution $$P(s’&lt;/td&gt;
-          &lt;td&gt;s_t,a_t): S\times A \to S\(that tells you what is the probability to go to state\)s’\(if you perform action\)a_t\(in state\)s_t$$.&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
+  &lt;li&gt;a transition probability distribution &lt;br /&gt;
+\(P(s&apos;|s_t,a_t): S\times A \to S\) that tells you what is the probability to go to state \(s&apos;\) if you perform action \(a_t\) in state \(s_t\).&lt;/li&gt;
   &lt;li&gt;A reward function \(R(s_t, a_t, s&apos;):S \times A \times S \to \mathbb{R}\) that returns a scalar feedback (an immediate reward) when you perform action \(a_t\) in state \(s_t\) and end up in state \(s&apos;\).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Moreover, the transition probability distribution \(P\) must satisfy the Markov property
-\(P(s&apos; |s_t, a_t) = P(s&apos;|\mathcal{H}_t, a_t)\)&lt;/p&gt;
+&lt;p&gt;Moreover, the transition probability distribution \(P\) must satisfy the Markov property:&lt;/p&gt;
+
+\[P(s&apos; |s_t, a_t) = P(s&apos;|\mathcal{H}_t, a_t)\]
 
 \[\begin{equation}
 R(s&apos;|s_t, a_t) = R(s&apos;|\mathcal{H}_t, a_t)
@@ -101,11 +95,11 @@ R(s&apos;|s_t, a_t) = R(s&apos;|\mathcal{H}_t, a_t)
 &lt;p&gt;This means that&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;the state \(s&apos;\) into which we transition after performing action $a_t$ from state \(s_t\)&lt;/li&gt;
+  &lt;li&gt;the state \(s&apos;\) into which we transition after performing action \(a_t\) from state \(s_t\)&lt;/li&gt;
   &lt;li&gt;the obtained reward \(r\)&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;are independent from the history of the game (namely, the sequence of actions, obervations, and rewards obtained so far).&lt;/p&gt;
+&lt;p&gt;are independent from the history of the game (namely, the sequence of actions, observations, and rewards obtained so far).&lt;/p&gt;
 
 &lt;p&gt;In other words, \(s_t\) contains all the information we need to choose what action to perform next.&lt;/p&gt;
 
@@ -115,7 +109,7 @@ R(s&apos;|s_t, a_t) = R(s&apos;|\mathcal{H}_t, a_t)
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;Fully observable environment&lt;/strong&gt;&lt;/p&gt;
 
-    &lt;p&gt;The environments is fully observable if 
+    &lt;p&gt;The environment is fully observable if 
 \(S_t = O_t = \text{environment state}\)
 This means that the agent’s state is equivalent to the environment’s state.&lt;/p&gt;
   &lt;/li&gt;
@@ -126,67 +120,67 @@ The environment state can still be Markovian, but the agent does not know it.&lt
 
     &lt;p&gt;In this case the agent state is a function of the history.&lt;/p&gt;
 
-    &lt;p&gt;For instance \(S_t=O_t\), more generally:&lt;br /&gt;
-\(S_{t+1}=u(S_t, A_t, R_{t+1}, O_{t+1})\)&lt;/p&gt;
+    &lt;p&gt;For instance \(S_t=O_t\), more generally:&lt;/p&gt;
+
+\[S_{t+1}=u(S_t, A_t, R_{t+1}, O_{t+1})\]
 
     &lt;p&gt;The agent state is often much smaller the environment state.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;an-example-of-partially-observable-environment&quot;&gt;An example of Partially Observable Environment&lt;/h3&gt;
+&lt;h1 id=&quot;an-example-of-partially-observable-environment&quot;&gt;An example of Partially Observable Environment&lt;/h1&gt;
 
 &lt;p&gt;the full environment state of a maze:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/labyrinth_full.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/labyrinth_full.png&quot; width=&quot;50%&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;A potential observation:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/labyrinth_1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/labyrinth_1.png&quot; width=&quot;50%&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Another observation in a different location&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/labyrinth_2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/labyrinth_2.png&quot; width=&quot;50%&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The two observations above are indistinguishable, but they refer to two different locations in the labyrinth. &lt;br /&gt;
 These two agent states are not Markovian because the only way we have to understand whether we are on the left side or the right side of the labyrinth is to analyze the agent’s history, checking what was the observation at previous timesteps.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/labyrinth_both.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2022-12-03-Introduction-to-RL/labyrinth_both.png&quot; width=&quot;50%&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You could not construct a Markov agent state in this maze.&lt;/p&gt;
 
-&lt;p&gt;To deal with partial observability, an agent can construct a suitable state representation $\to$ this is when the concepts of &lt;em&gt;value function&lt;/em&gt; and &lt;em&gt;action value function&lt;/em&gt; come in handy.&lt;/p&gt;
+&lt;p&gt;To deal with partial observability, an agent can construct a suitable state representation \(\to\) this is when the concepts of &lt;em&gt;value function&lt;/em&gt; and &lt;em&gt;action value function&lt;/em&gt; come in handy.&lt;/p&gt;
 
-&lt;h3 id=&quot;the-value-function&quot;&gt;The Value Function&lt;/h3&gt;
+&lt;h1 id=&quot;the-value-function&quot;&gt;The Value Function&lt;/h1&gt;
 
-&lt;p&gt;The value function is a function \(v(s): S \to \mathbb{R}\) that returns for each state \(s \in S\) the expected cumulative reward the agent will get by finding himself in such state.
-$$
-\begin{equation}
+&lt;p&gt;The value function is a function \(v(s): S \to \mathbb{R}\) that returns for each state \(s \in S\) the expected cumulative reward the agent will get by finding himself in such state.&lt;/p&gt;
+
+\[\begin{equation}
 \begin{split}
-v(s) &amp;amp;= \mathbb{E}[G_t | S_t = s] &lt;br /&gt;
+v(s) &amp;amp;= \mathbb{E}[G_t | S_t = s] \\
 &amp;amp;= \mathbb{E}[R_{t+1} + R_{t+2} + R_{t+3} + \dots |S_t = s]
-\end{split}&lt;/p&gt;
+\end{split}
+\end{equation}\]
 
-&lt;p&gt;\end{equation}
-$$&lt;/p&gt;
-
-&lt;h3 id=&quot;the-policy&quot;&gt;The Policy&lt;/h3&gt;
+&lt;h1 id=&quot;the-policy&quot;&gt;The Policy&lt;/h1&gt;
 
 &lt;p&gt;A policy is a function \(\pi: S \to A\) that, given a state \(s\), tells the agent what is the optimal action \(a\) to perform (the optimal action is the one that will lead him to the state with the highest expected cumulative reward). &lt;br /&gt;
 A policy can be deterministic (the state-action mapping is univoque) or stochastic. In this latter case you will get in output a probability distribution over the actions set \(A\).&lt;/p&gt;
 
-&lt;h3 id=&quot;the-q-value&quot;&gt;The Q value&lt;/h3&gt;
+&lt;h1 id=&quot;the-q-value&quot;&gt;The Q value&lt;/h1&gt;
 
-&lt;p&gt;A function that maps a state action pair \((s, a)\) to the expected cumulative reward.
-\(\begin{equation}
+&lt;p&gt;A function that maps a state action pair \((s, a)\) to the expected cumulative reward.&lt;/p&gt;
+
+\[\begin{equation}
 \begin{split}
 q(s,a) &amp;amp;= \mathbb{E}[G_t|S_t=s, A_t=a] \\
 &amp;amp;=\mathbb{E}[R_{t+1}+ R_{t+2}+ R_{t+3}+\dots | S_t=s, A_t=a]
 \end{split}
-\end{equation}\)&lt;/p&gt;
+\end{equation}\]
 
 &lt;p&gt;That’s all for this introductory blogpost! See you in the next one.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 03 Dec 2022 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 03 Dec 2022 00:00:00 +0000</pubDate>
         <link>/articles/22/Introduction-to-RL</link>
         <guid isPermaLink="true">/articles/22/Introduction-to-RL</guid>
         
