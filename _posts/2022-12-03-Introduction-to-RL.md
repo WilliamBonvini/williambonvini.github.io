@@ -1,17 +1,17 @@
 ---
-title: Introduction to Reinforcement Learning
+layout: post
+title: "Introduction to Reinforcement Learning"
 categories: Reinforcement Learning
 ---
+
 # Reinforcement Learning
 
-aaaa In this blogpost we will introduce the most important concepts in Reinforcement learning and provide some real world examples, to show you how and when it is currently being used.  
+In this blogpost we will introduce the most important concepts in Reinforcement learning and provide some real world examples, to show you how and when it is currently being used.  
 
 This series is based on the lectures that DeepMind held for UCL in 2020, they are freely available at [this](https://www.youtube.com/watch?v=TCCjZe0y4Qc&t=2641s) YouTube link.   
-I suggest you to watch these videos because they are extremely clear in my opinion. I chose to write this series of blogposts to offer a readable format of the content of DeepMind's lectures. This is also the way I like to learn new things: First i study them, then I try to reformulate the concepts in a well organized and concise fashion.   
+I suggest you to watch these videos because they are extremely clear in my opinion. I chose to write this series of blogposts to offer a readable format of the content of DeepMind's lectures. 
 
   
-
-
 
 # Introduction
 

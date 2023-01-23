@@ -61,12 +61,11 @@ GEM
     tzinfo-data (1.2022.7)
       tzinfo (>= 1.0.0)
     unicode-display_width (1.7.0)
-    wdm (0.1.1)
     webrick (1.7.0)
 
 PLATFORMS
   ruby
-  x64-mingw-ucrt
+  x64-unknown
 
 DEPENDENCIES
   jekyll (= 4.2.0)
@@ -74,8 +73,7 @@ DEPENDENCIES
   rouge
   tzinfo
   tzinfo-data
-  wdm
   webrick
 
 BUNDLED WITH
-   2.3.25
+   2.4.5
