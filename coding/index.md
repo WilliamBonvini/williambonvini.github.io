@@ -37,8 +37,3 @@ I've written some Python libraries. Some of them are now used internally in the 
 + **databridge**: a library that works ass an abstraction layer between Python and different database syntaxes.
 
 + **celorya**: a Python library that lets you load and manipulate database tables directly to xlsx files through a simple yml file.
-
-
-
-
-

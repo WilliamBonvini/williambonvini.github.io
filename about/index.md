@@ -43,4 +43,3 @@ During this work experience I've managed to teach a short course at Politecnico 
 + I enjoy running and do any kind of group sport activities. Running just happens to be free and I don't need friends to do it.
 
 
-

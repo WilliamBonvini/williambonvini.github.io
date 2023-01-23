@@ -9,8 +9,3 @@ In this website you can find my latest works, any share-worthy news, and a high 
 Please checkout the **About** section for more information on me, or visit my **Blog**, in which I publish posts on the topics I come across.\\
 Feel free to reach me on any platform (contacts in the footer). \\
 Cheers! 
-
-
-
-
-
