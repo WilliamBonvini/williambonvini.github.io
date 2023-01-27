@@ -1,0 +1,6 @@
+"Å<p>On the left, the entire labyrinth seen from above: the full environment state.</p>
+
+<figure><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_1.png" width="48%" /><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_2.png" width="51%" />
+<figcaption>On the lfet, two potential state observations.</figcaption></figure>
+
+<p>The two observations above are indistinguishable, but they refer to two different locations in the labyrinth.</p>

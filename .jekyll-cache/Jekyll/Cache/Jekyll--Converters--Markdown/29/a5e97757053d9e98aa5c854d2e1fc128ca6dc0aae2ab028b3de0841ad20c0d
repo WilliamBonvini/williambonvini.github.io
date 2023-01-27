@@ -1,99 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Introduction to Reinforcement Learning</title>
-  <meta name="description" content="Reinforcement Learning">
-
-  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not-->
-  
-    <link href='//fonts.googleapis.com/css?family=Lato:400,400italic' rel='stylesheet' type='text/css'>
-  
-  
-<!-- Load up MathJax script if needed ... specify in /_data/options.yml file-->
-  
-    <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: [
-      "MathMenu.js",
-      "MathZoom.js",
-      "AssistiveMML.js",
-      "a11y/accessibility-menu.js"
-    ],
-    jax: ["input/TeX", "output/CommonHTML"],
-    TeX: {
-      extensions: [
-        "AMSmath.js",
-        "AMSsymbols.js",
-        "noErrors.js",
-        "noUndefined.js",
-      ]
-    }
-  });
-</script>
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
-
-
-  <link rel="stylesheet" type="text/css" href="/css/tufte.css">
-  <!-- <link rel="stylesheet" type="text/css" href="/css/print.css" media="print"> -->
-
-  <link rel="canonical" href="/reinforcement/learning/2022/12/03/Introduction-to-RL.html">
-
-  <link rel="alternate" type="application/rss+xml" title="" href="/feed.xml" />
-</head>
-  <body>
-    <!--- Header and nav template site-wide -->
-<header>
-    <nav class="group">
-	<a href="/"><img class="badge" src="/assets/img/et_book_logo.png" alt="WB"></a>
-	
-	
-		
-		    
-		      <a href="/blog/">blog</a>
-		    
-	    
-  	
-		
-  	
-		
-		    
-		      <a href="/css/print.css"></a>
-		    
-	    
-  	
-		
-  	
-		
-		    
-		      <a href="/home/">Home</a>
-		    
-	    
-  	
-		
-		    
-		      <a href="/coding/">Coding</a>
-		    
-	    
-  	
-		
-		    
-		      <a href="/about/">About</a>
-		    
-	    
-  	
-	</nav>
-</header>
-    <article class="group">
-      <h1>Introduction to Reinforcement Learning</h1>
-<p class="subtitle">December 3, 2022</p>
-
-<h1 id="reinforcement-learning">Reinforcement Learning</h1>
+I"�#<h1 id="reinforcement-learning">Reinforcement Learning</h1>
 
 <p><label for="backflip" class="margin-toggle">⊕</label><input type="checkbox" id="backflip" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/2022-12-03-Introduction-to-RL/back_flip.gif" /><br />An example of reinforcement learning: the agent learns optimally to backflip. <br />
 Source: <a href="">Composing Value Functions in Reinforcement Learning</a></span></p>
@@ -215,13 +120,22 @@ The environment state can still be Markovian, but the agent does not know it.</p
 
 <p>Imagine you are looking at a maze from above.</p>
 
-<figure><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_full.png" /><figcaption class="maincolumn-figure">On the left, the entire labyrinth seen from above: the full environment state.</figcaption></figure>
+<figure class="fullwidth"><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_full.png" /><figcaption>This is the entire labyrinth: its full environment state.</figcaption></figure>
 
-<figure><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_1.png" width="48%" /><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_2.png" width="52%" />
-<figcaption>On the left, two potential state observations. The two observations are indistinguishable, but they refer to two different locations in the labyrinth.   
-</figcaption></figure>
+<figure class="fullwidth"><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_full.png" /><figcaption>The full environment state of a maze.</figcaption></figure>
 
-<p>These two agent states are not Markovian because the only way we have to understand whether we are on the left side or the right side of the labyrinth is to analyze the agent’s history, checking what was the observation at previous timesteps.</p>
+<p><img src="/" width="50%" /></p>
+
+<p>A potential observation:</p>
+
+<p><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_1.png" width="50%" /></p>
+
+<p>Another observation in a different location</p>
+
+<p><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_2.png" width="50%" /></p>
+
+<p>The two observations above are indistinguishable, but they refer to two different locations in the labyrinth. <br />
+These two agent states are not Markovian because the only way we have to understand whether we are on the left side or the right side of the labyrinth is to analyze the agent’s history, checking what was the observation at previous timesteps.</p>
 
 <p><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_both.png" width="50%" /></p>
 
@@ -257,38 +171,4 @@ q(s,a) &amp;= \mathbb{E}[G_t|S_t=s, A_t=a] \\
 \end{equation}\]
 
 <p>That’s all for this introductory blogpost! See you in the next one.</p>
-
-
-
-    </article>
-    <span class="print-footer">Introduction to Reinforcement Learning - December 3, 2022 - </span>
-
-    <footer>
-  <hr class="slender">
-  <ul class="footer-links">
-    <li><a href="mailto:william.bonvini@outlook.com"><span class="icon-mail3"></span></a></li>    
-    
-      <li>
-        <a href="https://twitter.com/William_Bonvini"><span class="icon-twitter"></span></a>
-      </li>
-    
-      <li>
-        <a href="https://github.com/WilliamBonvini"><span class="icon-github"></span></a>
-      </li>
-    
-      <li>
-        <a href="https://www.linkedin.com/in/chttrshts/"><span class="icon-linkedin"></span></a>
-      </li>
-    
-      <li>
-        <a href="https://open.spotify.com/user/chattershuts?si=2e5e046c47f44908"><span class="icon-spotify"></span></a>
-      </li>
-      
-  </ul>
-  <div class="credits">
-<span>&copy; 2023 &nbsp;&nbsp;</span></br> <br>
-<span>This site was created with the <a href="//github.com/clayh53/tufte-jekyll">Tufte theme </a> in <a href="//jekyllrb.com">Jekyll</a>.</span> 
-</div>
-</footer>
-  </body>
-</html>
+:ET

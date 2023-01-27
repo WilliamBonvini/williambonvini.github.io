@@ -67,11 +67,13 @@ It is a system in which you can perform actions and, consequently, it will
 
 This type of system is modeled as a Markov decision process, namely a mathematical framework that models decision making problems.  
 Look at the image below. It represents a graph with three nodes $$(S_0, S_1, S_2)$$.   
-From each state you can perform some actions that will lead you to another state with a certain probability. We associate a reward (the orange arrows) to some of these actions.
+From each state you can perform some actions that will lead you to another state with a certain probability. We associate a reward (the orange arrows) to some of these actions.  
 
-<img src="/assets/2022-12-03-Introduction-to-RL/mdp.png" width="80%">
 
-(Image source: wikipedia)
+
+{% maincolumn 'assets/2022-12-03-Introduction-to-RL/mdp.png' 'On your left, an example of Markov Decision Process. Source: Wikipedia.'%}
+
+
 
 Rigorously, a Markov Decision Process is defined as a
 
@@ -135,19 +137,20 @@ We have described extensively how we model an environment in Reinforcement Learn
 
 # An example of Partially Observable Environment
 
-the full environment state of a maze:
+Imagine you are looking at a maze from above.  
 
-<img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_full.png" width="50%"/>
 
-A potential observation:
 
-<img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_1.png" width="50%"/>
+{% maincolumn 'assets/2022-12-03-Introduction-to-RL/labyrinth_full.png' 'On the left, the entire labyrinth seen from above: the full environment state.' %}
 
-Another observation in a different location
 
-<img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_2.png" width="50%"/>
 
-The two observations above are indistinguishable, but they refer to two different locations in the labyrinth.   
+<figure><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_1.png" width="48%"/><img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_2.png" width="52%"/>
+<figcaption>On the left, two potential state observations. The two observations are indistinguishable, but they refer to two different locations in the labyrinth.   
+</figcaption></figure>
+
+
+
 These two agent states are not Markovian because the only way we have to understand whether we are on the left side or the right side of the labyrinth is to analyze the agent's history, checking what was the observation at previous timesteps.
 
 <img src="/assets/2022-12-03-Introduction-to-RL/labyrinth_both.png" width="50%">
