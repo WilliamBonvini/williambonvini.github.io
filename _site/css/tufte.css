@@ -177,7 +177,7 @@ p .subtitle { font-style: italic; margin-top: 2.1777777777777778rem; margin-bott
 
 p, ol, ul { font-size: 1.4rem; }
 
-p, li { line-height: 2rem; margin-top: 1.4rem; padding-right: 2rem; vertical-align: baseline; }
+p, li { line-height: 2rem; margin-top: 1.4rem; vertical-align: baseline; }
 
 /* Chapter Epigraphs */
 div.epigraph { margin: 3.5636rem 0; }
@@ -234,7 +234,7 @@ article { position: relative; padding: 1 rem 0rem 2.5rem 0rem; }
 
 section { padding-top: 1rem; padding-bottom: 1rem; }
 
-ul, ol { width: 45%; -webkit-padding-start: 5%; -webkit-padding-end: 5%; list-style-type: none; }
+ul, ol { width: 45%; -webkit-padding-start: 5%; -webkit-padding-end: 5%; }
 
 figure, figure img.maincolumn { max-width: 55%; -webkit-margin-start: 20; -webkit-margin-end: 0; margin-bottom: 3em; }
 
@@ -280,7 +280,7 @@ label.sidenote-number { display: inline; }
 
 label.margin-toggle:not(.sidenote-number) { display: none; }
 
-@media (max-width: 760px) { label.margin-toggle:not(.sidenote-number) { display: inline; color: #a00000; } .sidenote, .marginnote { display: none; } .margin-toggle:checked + .sidenote, .margin-toggle:checked + .marginnote { display: block; float: left; left: 1rem; clear: both; width: 95%; margin: 1rem 2.5%; vertical-align: baseline; position: relative; } label { cursor: pointer; } pre, pre code, p code, p pre code { width: 90%; padding: 0; } .table-caption { display: block; float: right; clear: both; width: 98%; margin-top: 1rem; margin-bottom: 0.5rem; margin-left: 1%; margin-right: 1%; vertical-align: baseline; position: relative; } div.table-wrapper, table, table.booktabs { width: 85%; } div.table-wrapper { border-right: 1px solid #efefef; } img { max-width: 100%; } figcaption.maincolumn-figure, figure.fullwidth figcaption { float: none; text-align: center; } figure.fullwidth figcaption { margin-left: 0; } }
+@media (max-width: 760px) { label.margin-toggle:not(.sidenote-number) { display: inline; color: #a00000; } .sidenote, .marginnote { display: none; } .margin-toggle { checked: true; } .margin-toggle:checked + .sidenote, .margin-toggle:checked + .marginnote { display: block; float: left; left: 1rem; clear: both; width: 95%; margin: 1rem 2.5%; vertical-align: baseline; position: relative; } label { cursor: pointer; } pre, pre code, p code, p pre code { width: 90%; padding: 0; } .table-caption { display: block; float: right; clear: both; width: 98%; margin-top: 1rem; margin-bottom: 0.5rem; margin-left: 1%; margin-right: 1%; vertical-align: baseline; position: relative; } div.table-wrapper, table, table.booktabs { width: 85%; } div.table-wrapper { border-right: 1px solid #efefef; } img { max-width: 100%; } figcaption.maincolumn-figure, figure.fullwidth figcaption { float: none; text-align: center; } figure.fullwidth figcaption { margin-left: 0; } }
 
 /*--- End of Basic Layout stuff from tufte.css ---*/
 /* -- Jekyll specific styling --*/

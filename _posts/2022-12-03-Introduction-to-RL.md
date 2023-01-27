@@ -6,6 +6,12 @@ categories: Reinforcement Learning
 
 # Reinforcement Learning
 
+{% marginfigure 
+'backflip' 
+'assets/2022-12-03-Introduction-to-RL/back_flip.gif' 
+'An example of reinforcement learning: the agent learns optimally to backflip.   
+Source: [Composing Value Functions in Reinforcement Learning]()' %}
+
 In this blogpost we will introduce the most important concepts in Reinforcement learning and provide some real world examples, to show you how and when it is currently being used.  
 
 This series is based on the lectures that DeepMind held for UCL in 2020, they are freely available at [this](https://www.youtube.com/watch?v=TCCjZe0y4Qc&t=2641s) YouTube link.   
@@ -19,7 +25,7 @@ Reinforcement Learning is the branch of Computer Science that studies how to lea
 
 This interaction can be summarized in the following diagram:
 
-<img src="/assets/2022-12-03-Introduction-to-RL/agent_environment_diagram.png" width="100%"/>
+{% marginfigure 'rl_diagram' 'assets/2022-12-03-Introduction-to-RL/agent_environment_diagram.png' 'Reinforcement Learning entities diagram' %}
 
 
 

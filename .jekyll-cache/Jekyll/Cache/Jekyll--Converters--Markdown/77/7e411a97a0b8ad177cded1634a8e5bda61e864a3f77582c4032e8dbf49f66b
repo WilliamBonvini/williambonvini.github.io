@@ -1,0 +1,322 @@
+I"z5<h1 id="introduction">Introduction</h1>
+
+<p><label for="tm_intro" class="margin-toggle">⊕</label><input type="checkbox" id="tm_intro" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/imgs_lda/topic_modeling_intro.jpg" /><br /></span></p>
+
+<p>Latent Dirichlet Allocation (LDA) is one of the most popular topic modeling <label for="topic modeling" class="margin-toggle sidenote-number"></label><input type="checkbox" id="topic modeling" class="margin-toggle" /><span class="sidenote">Topic modelling is the task of identifying what topics are treated in a corpus of documents. </span> methods out there, even though it has been published back in 2003 by <em>David Blei</em>, <em>Andrew Ng</em>, and <em>Michael Jordan</em>.</p>
+
+<p>LDA produces two output</p>
+
+<ul>
+  <li>a probability distribution on words to represent <strong>topics</strong></li>
+  <li>a probability distribution on topics to summarize <strong>documents</strong></li>
+</ul>
+
+<p>So imagine you have the following set of sentences (a sentence is just a very short document):</p>
+
+<ul>
+  <li><em>I like going running because it makes me feel good</em></li>
+  <li><em>Let’s go swimming tomorrow morning!</em></li>
+  <li><em>I’m going to play at a concert tonight</em></li>
+  <li><em>The other day I saw a great pianist in the city streets</em></li>
+  <li><em>I love working out while listening to rock music</em></li>
+</ul>
+
+<p>LDA will find the following summarization for such sentences:</p>
+
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sentence</th>
+      <th>Topic A</th>
+      <th>Topic B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>I like going running because it makes me feel good</em></td>
+      <td>100%</td>
+      <td>0%</td>
+    </tr>
+    <tr>
+      <td><em>Let’s go swimming tomorrow morning!</em></td>
+      <td>100%</td>
+      <td>0%</td>
+    </tr>
+    <tr>
+      <td><em>I’m going to play at a concert tonight</em></td>
+      <td>20%</td>
+      <td>80%</td>
+    </tr>
+    <tr>
+      <td><em>The other day I saw a great pianist in the city streets</em></td>
+      <td>0%</td>
+      <td>100%</td>
+    </tr>
+    <tr>
+      <td><em>I love working out while listening to rock music</em></td>
+      <td>50%</td>
+      <td>50%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>An the following representation for the two topics:</p>
+
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>running</th>
+      <th>swimming</th>
+      <th>play</th>
+      <th>concert</th>
+      <th>pianist</th>
+      <th>work out</th>
+      <th>rock</th>
+      <th>music</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Topic A</td>
+      <td>30%</td>
+      <td>30%</td>
+      <td>10%</td>
+      <td> </td>
+      <td> </td>
+      <td>30%</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Topic B</td>
+      <td> </td>
+      <td> </td>
+      <td>12%</td>
+      <td>22%</td>
+      <td>22%</td>
+      <td> </td>
+      <td>22%</td>
+      <td>22%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ok, so how do we obtain such output?</p>
+
+<p>Before diving into the algorithm let’s revise a couple of prerequisities.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<h3 id="poisson-distribution">Poisson Distribution</h3>
+
+<p><label for="poisson" class="margin-toggle">⊕</label><input type="checkbox" id="poisson" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/imgs_lda/call-center.jpg" /><br />Call center calls are a typical example of Poisson distribution</span></p>
+
+<p>The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring in a fixed interval of time or space if these events occur with a known constant mean rate and independently of the time since the last event.</p>
+
+<p>Example:
+A call center receives an average of 180 calls per hour, 24 hours a day. The calls are independent: receiving one does not change the probability of when the next one will arrive. The number of calls received during any minute can be modeled as a Poisson probability distribution with mean 3: <br />
+with high probability the call center will receive 2 or 3 calls in a specific minute, but there is a small chance it will receive 0 or even 6.</p>
+
+\[\begin{align}
+P(\text{k calls in a minute}) &amp;= \frac{\lambda^k\cdot e^{-\lambda}}{k!} = \frac{3^k\cdot e^{-3}}{k!}
+\\
+\\
+P(\text{0 call in a minute}) &amp;= \frac{3^0\cdot e^{-3}}{0!}=0.05
+\\
+P(\text{1 call in a minute}) &amp;= \frac{3^1\cdot e^{-3}}{1!}=0.15
+\\
+P(\text{2 call in a minute}) &amp;= \frac{3^2\cdot e^{-3}}{2!}=0.23
+\\
+P(\text{3 call in a minute}) &amp;= \frac{3^3\cdot e^{-3}}{3!}=0.23
+\\
+P(\text{4 call in a minute}) &amp;= \frac{3^4\cdot e^{-3}}{4!}=0.17
+\\
+\\
+\vdots
+\end{align}\]
+
+<p>This distribution makes this assumptions:</p>
+
+<ul>
+  <li>The occurrence of one event does not affect the probability that a second event will occur \(\to\) events occur independently.</li>
+  <li>Two events cannot occur at exactly the same instant; instead, at each very small sub-interval, either exactly one event occurs, or no event occurs.</li>
+</ul>
+
+<p>If these conditions are true, then \(k\) is a Poisson random variable, and the distribution of \(k\) is a Poisson distribution.</p>
+
+<h3 id="dirichlet-distribution">Dirichlet Distribution</h3>
+
+<p><label for="dirichlet plots" class="margin-toggle">⊕</label><input type="checkbox" id="dirichlet plots" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/imgs_lda/dirichlet_plots.png" /><br />Some possible configurations for a Dirichlet distribution with 3 parameters. On top are shown the heat maps of the distribution, on the bottom are shown data points sampled from each configuration. Each vertex corresponds to an “entity”. In LDA entities are topics. Image credits to <a href="https://gist.github.com/tboggs/8778945">tboggs</a>.</span></p>
+
+<p>The Dirichlet distribution is a family of continuous multivariate probability distributions parametrized by a vector \(\alpha\) of positive reals.<br />
+I will explain it in a simple way, that I think makes it easy to grasp the rationale behind it.</p>
+
+<p>Do you remember the Beta distribution? It is a continuous distribution that is usually dubbed as “the probability distribution of probabilities”, because it can only take values between \(0\) and \(1\).  <br />
+The Beta distribution has two parameters: \(\alpha\) and \(\beta\).</p>
+
+<ul>
+  <li>\(\alpha\) <br />
+an integer, the higher it is, the higher the probability of success is</li>
+  <li>\(\beta\) <br />
+an integer, the higher it is, the higher the probability of failure is</li>
+</ul>
+
+<p>The Dirichlet distribution is a generalization of the Beta distribution. It is a probability distribution describing probabilities of outcomes. Instead of describing probability of one of two outcomes of a Bernoulli trial, like the Beta distribution does, it describes probability of \(K\) outcomes. <br />
+The Beta distribution is the special case of the Dirichlet distribution with \(K=2\).<br />
+The parameters are \(\alpha_1, \alpha_2, \dots, \alpha_K\) all strictly positive, defined analogously to \(\alpha\) and \(\beta\) of the Beta distribution.</p>
+
+<h1 id="latent-dirichlet-allocation-in-depth">Latent Dirichlet Allocation in depth</h1>
+
+<h2 id="assumptions">Assumptions</h2>
+
+<p><label for="bow" class="margin-toggle">⊕</label><input type="checkbox" id="bow" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/imgs_lda/bag_of_words.png" /><br />My attempt at generating a bag of words with DALLE</span></p>
+
+<ul>
+  <li>“bag-of-words” assumption: the order of the words in a document doesn’t matter</li>
+  <li>documents are exchangeable: the specific ordering of the documents in a corpus can also be neglected</li>
+</ul>
+
+<p>A classic representation theorem due to de Finetti (1990) establishes that any collection of exchangeable random variables has a representation as a mixture distribution (a mixture of two or more probability distributions).</p>
+
+<h2 id="notation-and-terminology">Notation and terminology</h2>
+
+<ul>
+  <li>
+    <p>A <strong><em><u>word</u></em></strong> is the basic unit of discrete data, defined to be an item from a vocabulary indexed by \(\{1, \dots ,V\}\). <br />
+We represent words using unit-basis vectors that have a single component equal to one and all other components equal to zero. <br />
+Thus, using superscripts to denote components, the \(v\)-th word in the vocabulary is represented by a vector \(w\) such that \(w^v=1\) and \(w^u=0\) for \(u\neq v\).</p>
+  </li>
+  <li>A <strong><em><u>document</u></em></strong> is a sequence of \(N\) words denoted by \(\mathbf{w}= (w_1,w_2, \dots,w_n)\), where \(w_n\) is the \(n\)-th word in the sequence.</li>
+  <li>A <strong><em><u>corpus</u></em></strong> is a collection of \(M\) documents denoted by \(C = \{\mathbf{w_1}, \mathbf{w_2}, \dots, \mathbf{w_M}\}\).</li>
+</ul>
+
+<h2 id="algorithm">Algorithm</h2>
+
+<h3 id="assumption-on-documents-generation">Assumption on documents generation</h3>
+
+<p>LDA assumes that documents are represented as random mixtures over latent topics, where each topic is characterized by a distribution over words.
+LDA assumes the following generative process for each document \(\textbf{w}\) in a corpus \(D\):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Algorithm step</th>
+      <th>Explanation</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1. Choose \(N \sim Poisson(\xi)\)</td>
+      <td>sample a number of words</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2. Choose \(\theta \sim Dir(\alpha)\)</td>
+      <td>sample a topic distribution</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>3. For each of the \(N\) words \(w_n\)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>1. Choose a topic \({z_n \sim Multinomial(\theta)}\)</td>
+      <td>boooh</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2. Choose a word \(w_n\) from $$p(w_n</td>
+      <td>z_n,\beta)\(a multinomial probability conditioned on the topics\)z_n$$.</td>
+      <td>boooh</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li>Choose \(N \sim Poisson(\xi)\)</li>
+  <li>Choose \(\theta \sim Dir(\alpha)\)</li>
+  <li>For each of the \(N\) words \(w_n\)
+    <ol>
+      <li>Choose a topic 
+\({z_n \sim Multinomial(\theta)}\)</li>
+      <li>Choose a word \(w_n\) from \(p(w_n|z_n,\beta)\): <br />
+   a multinomial probability conditioned on the topics \(z_n\).</li>
+    </ol>
+  </li>
+</ol>
+
+<p>when writing each document, you:</p>
+
+<ul>
+  <li>decide on the number of words \(N\) the document will have (say, according to a Poisson distribution).</li>
+  <li>Choose a topic mixture for the document (according to a Dirichlet distribution over a fixed set of \(K\) topics). For example, assuming that we have the two sport and music topics above, you might choose the document to consist of \(1/3\) sport and \(2/3\) music.</li>
+  <li>Generate each word \(w_i\) in the document by
+    <ul>
+      <li>First picking a topic (according to the multinomial distribution that you sampeld above; for example, you might pick he food topic wit \(1/3\) probability and the music topic with \(2/3\) probability)</li>
+      <li>Using the topic to generate the word itself (according to the topic’s multinomial distribution). For example, if we selected the sport topic, we might generate the word “running” with \(30\%\) probability, “blabla” with bla etc…</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Assuming the generative model for a collection of documents, LDA then tries to backtrack from the documents to find a set of topics that are likely to have generated the collection.</p>
+
+<p>So now suppose you have a set of documents. You’ve chosen some fixed number of \(K\) topics to discover, and want to use LDA o learn the topic representation of each document and the words associated to each topic. How do you do this? one way (knowsn as collapsed Gibbs sampling) is the following:</p>
+
+<ul>
+  <li>Go through each document, and randomly assign eac word in the document to one of the \(K\) topics.</li>
+  <li>Notice that this random assignment already gives you both topic representation of all the documents and word distributions of all the topics (albeit not very good ones)</li>
+  <li>So to improve on them, for each document d…
+    <ul>
+      <li>go through each word w in d…
+        <ul>
+          <li>and for each topic t, compute two things
+            <ul>
+              <li></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Choose the number of topics \(K\) .</p>
+
+<ol>
+  <li>For each ocument, choose a mixture of topics according to a Dirichlet distribution</li>
+  <li>for each topic, choose a probability distribution over words according to another Dirichlet distribution</li>
+  <li>For each word in each document, choose a topic according to the mixture of topics chosen in step 1, and then choose a word from the chosen topics’s word distribution in step 2.</li>
+</ol>
+
+<p>Sources:</p>
+
+<ul>
+  <li><a href="https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf">Original paper</a></li>
+  <li><a href="http://blog.echen.me/2011/08/22/introduction-to-latent-dirichlet-allocation/">Echen’s blogpost</a> - highly suggest it</li>
+</ul>
+:ET

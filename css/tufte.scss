@@ -130,7 +130,6 @@ p, ol, ul { font-size: 1.4rem; }
 
 p, li { line-height: 2rem;
         margin-top: 1.4rem;
-        padding-right: 2rem; //removed because,  why?
         vertical-align: baseline; }
 
 /* Chapter Epigraphs */
@@ -241,7 +240,7 @@ section { padding-top: 1rem;
 ul,ol { width: 45%;
      -webkit-padding-start: 5%;
      -webkit-padding-end: 5%;
-     list-style-type: none; }
+      }
 
 //li { padding: 0.5em 0; } //vertical padding on list items screws up vertical rhythym
 
@@ -327,7 +326,7 @@ span.newthought { font-variant: small-caps;
                   font-size: 1.2em;
                   letter-spacing: 0.05rem; }
 
-input.margin-toggle { display: none; }
+input.margin-toggle { display: none; }  // this way the checkbox to display the image does not get shown
 
 label.sidenote-number { display: inline; }
 
@@ -335,6 +334,7 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
 
 @media (max-width: 760px) { label.margin-toggle:not(.sidenote-number) { display: inline; color: $contrast-color; }
                             .sidenote, .marginnote { display: none; }
+                            .margin-toggle { checked: true }
                             .margin-toggle:checked + .sidenote,
                             .margin-toggle:checked + .marginnote { display: block;
                                                                    float: left;
