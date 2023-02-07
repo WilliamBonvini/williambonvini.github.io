@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Sphinx Tutorial</title>
+  <meta name="description" content="">
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not-->
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:400,400italic' rel='stylesheet' type='text/css'>
+  
+  
+<!-- Load up MathJax script if needed ... specify in /_data/options.yml file-->
+  
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js",
+      ]
+    }
+  });
+</script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
+
+
+  <link rel="stylesheet" type="text/css" href="/css/tufte.css">
+  <!-- <link rel="stylesheet" type="text/css" href="/css/print.css" media="print"> -->
+
+  <link rel="canonical" href="/2022/11/12/sphinx.html">
+
+  <link rel="alternate" type="application/rss+xml" title="" href="/feed.xml" />
+</head>
+  <body>
+    <!--- Header and nav template site-wide -->
+<header>
+    <nav class="group">
+	<a href="/"><img class="badge" src="/assets/img/et_book_logo.png" alt="WB"></a>
+	
+	
+		
+		    
+		      <a href="/blog/">blog</a>
+		    
+	    
+  	
+		
+		    
+		      <a href="/css/print.css"></a>
+		    
+	    
+  	
+		
+  	
+		
+  	
+		
+		    
+		      <a href="/home/">Home</a>
+		    
+	    
+  	
+		
+		    
+		      <a href="/research/">Research</a>
+		    
+	    
+  	
+		
+		    
+		      <a href="/industry/">Industry</a>
+		    
+	    
+  	
+	</nav>
+</header>
+    <article class="group">
+      <h1>Sphinx Tutorial</h1>
+<p class="subtitle">November 12, 2022</p>
+
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>topic</th>
+      <th>OS</th>
+      <th>required modules</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Generate Sphinx documentation for a Python project with the <em>ReadTheDocs</em> theme.</td>
+      <td>Windows</td>
+      <td>venv</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h1 id="abstract">Abstract</h1>
+
+<p><label for="id" class="margin-toggle">⊕</label><input type="checkbox" id="id" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/imgs_sphinx/sphinxdoc.png" /><br /></span></p>
+
+<p>Suppose that you have written a Python library and you want to share it with your colleagues. One of the most important things to do is to write a clear documentation. This tutorial will help you in achieving just that.</p>
+
+<p>Our sample project’s structure will look like this</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my_library
+	|
+	|---my_module.py
+</code></pre></div></div>
+
+<p>And <code class="language-plaintext highlighter-rouge">my_module.py</code> contains the following code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyFirstClass</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="s">""" class constructor """</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        
+    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="s">""" This method prints a welcome message """</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Hello </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="s">""" This method prints a goodbye message """</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Goodbye </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>in the end we will obtain an HTML page that documents all the methods we have written above.</p>
+
+<p>Let’s start!</p>
+
+<p><br /></p>
+
+<h1 id="create-a-virtual-environment-and-install-sphinx">Create a virtual environment and install Sphinx</h1>
+
+<p><br /> <label for="sphinx-installation" class="margin-toggle">⊕</label><input type="checkbox" id="sphinx-installation" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/imgs_sphinx/sphinx-installation.png" /><br />A bunch of people installing a sphinx. Image rights: Dalle.</span></p>
+
+<ol>
+  <li>
+    <p>Open a shell (you’ll be using this for all the next steps of this tutorial)</p>
+  </li>
+  <li>
+    <p>Go to the <code class="language-plaintext highlighter-rouge">my_project</code> folder</p>
+  </li>
+  <li>
+    <p>Find the path of your python executable</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-c</span> <span class="s2">"import os, sys; print(os.path.dirname(sys.executable))"</span>
+</code></pre></div>    </div>
+
+    <p>It will output a path (I’ll refer to it as <em>MY_PATH</em>). <br />
+Copy it, you will need it in the next step.</p>
+  </li>
+  <li>
+    <p>Create a virtual environment</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MY_PATH/python <span class="nt">-m</span> venv <span class="s2">"venv-mylibrary"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>activate your virtual environment by running</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>venv-mylibrary/Scripts/activate
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the following command to install Sphinx and some auxiliary libraries.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span><span class="nv">sphinx</span><span class="o">==</span>5.3.0 sphinxcontrib.applehelp<span class="o">==</span>1.0.3 sphinx-rtd-theme<span class="o">==</span>1.1.1
+</code></pre></div>    </div>
+
+    <p>Now you have added sphinx to the requirements of your virtual environment</p>
+  </li>
+</ol>
+
+<p><br /></p>
+
+<h1 id="sphinx-quickstart">Sphinx Quickstart</h1>
+
+<p><br /></p>
+
+<p><label for="id" class="margin-toggle">⊕</label><input type="checkbox" id="id" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/imgs_sphinx/sphinx-quickstart.png" /><br />A sphinx quick-starting a race I guess. Image rights: Dalle.</span></p>
+
+<ol>
+  <li>
+    <p>Create a folder where you’ll put your documentation files. I like to call it <code class="language-plaintext highlighter-rouge">docs</code>.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>docs
+</code></pre></div>    </div>
+  </li>
+  <li>Navigate to the docs directory</li>
+  <li>Run the following command to create the necessary Sphinx files and directories:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sphinx-quickstart
+</code></pre></div></div>
+
+<p>This command will prompt you for some information about your project, let’s see them  in detail:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; Separate source and build directories (y/n) [n]:
+</code></pre></div></div>
+
+<p>I suggest you to write <code class="language-plaintext highlighter-rouge">y</code>, It looks cleaner.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> Project name:
+</code></pre></div></div>
+
+<p>I suggest you to use the name of the project’s root folder.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> Author name<span class="o">(</span>s<span class="o">)</span>:
+</code></pre></div></div>
+
+<p>Insert the author names in alphabetical order, separated by a <code class="language-plaintext highlighter-rouge">,</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> Project release <span class="o">[]</span>:
+</code></pre></div></div>
+
+<p>If you press enter, it will default to <code class="language-plaintext highlighter-rouge">0.0.0</code>, otherwise specify a different version.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> Project languge <span class="o">[</span>en]: 
+</code></pre></div></div>
+
+<p>Press enter, it will default to <code class="language-plaintext highlighter-rouge">en</code>.</p>
+
+<p>Finished: An initial directory structure has been created.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my_library
+    |
+    | - docs 
+    |    |
+    |    | ---------- source
+    |    |				|
+    |    |				| - conf.py
+    |    |				| - index.rst
+    |    | - make.bat
+    |    | - Makefile
+    |
+    | - my_module.py
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h1 id="edit-confpy">Edit <code class="language-plaintext highlighter-rouge">conf.py</code></h1>
+
+<p>The <code class="language-plaintext highlighter-rouge">conf.py</code> file let’s you specify what extensions, themes and auxiliary information to create your Sphinx documentation. 
+Modify it as shown below:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># find the row where html_theme is set and modify it as follows (if it doesn't exist create it from scratch)
+</span><span class="n">html_theme</span> <span class="o">=</span> <span class="s">'sphinx_rtd_theme'</span>
+
+<span class="c1"># find the row that contains extensions = [] and modify it as follows:
+</span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s">'sphinx.ext.autodoc'</span><span class="p">,</span> <span class="s">'sphinx.ext.napoleon'</span><span class="p">]</span>
+
+<span class="c1"># Add the path of the root directory of the library
+</span><span class="n">sys</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">abspath</span><span class="p">(</span><span class="s">'../../my_library'</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h1 id="create-my_modulerst">Create <code class="language-plaintext highlighter-rouge">my_module.rst</code></h1>
+
+<p>At the same level of <code class="language-plaintext highlighter-rouge">index.rst</code> create a new file called  <code class="language-plaintext highlighter-rouge">my_module.rst</code> (give it the name of the module you want to document in Sphinx).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my_library
+    |
+    | - docs 
+    |    |
+    |    | ---------- source
+    |    |				|
+    |    |				| - conf.py
+    |    |				| - index.rst
+    |	 |				| - my_module.rst
+    |    | - make.bat
+    |    | - Makefile
+    |
+    | - my_module.py
+</code></pre></div></div>
+
+<p>And populate it as follows:</p>
+
+<pre><code class="language-rst">MyFirstClass
+================
+
+Description of MyClassName
+
+.. autoclass:: my_module.MyFirstClass
+   :members:
+   :undoc-members:
+   :show-inheritance:
+</code></pre>
+
+<p>This will generate the documentation for each public method of <code class="language-plaintext highlighter-rouge">MyClassName</code>.</p>
+
+<p>Repeat this process for all the classes/modules you have.</p>
+
+<p><br /></p>
+
+<h1 id="edit-indexrst">Edit <code class="language-plaintext highlighter-rouge">index.rst</code></h1>
+
+<p>Edit the file <code class="language-plaintext highlighter-rouge">docs/source/index.rst</code> to add to the table of content the link to the files you have just created.<br />
+Mind the empty line before <code class="language-plaintext highlighter-rouge">my_module</code>, it is necessary!</p>
+
+<pre><code class="language-rst">Welcome to MY_LIBRARY's documentation!
+=======================================
+
+This is a high level description of MY_LIBRARY, modify it as you like.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   
+   my_module
+
+
+.. _my_module: my_module.rst
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+</code></pre>
+
+<p><br /></p>
+
+<h1 id="generate-html">Generate HTML</h1>
+
+<p>Once you have populated all of the necessary files, you can generate the HTML documentation by running the following command from the <code class="language-plaintext highlighter-rouge">docs</code> directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make html
+</code></pre></div></div>
+
+<p>This will create the HTML documentation for your package in the <code class="language-plaintext highlighter-rouge">docs/_build/html</code> directory. <br />
+You can view the documentation by opening the file <code class="language-plaintext highlighter-rouge">index.html</code> in a web browser.</p>
+
+<p><br /></p>
+
+<h1 id="conclusions">Conclusions</h1>
+
+<p><label for="the_end" class="margin-toggle">⊕</label><input type="checkbox" id="the_end" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/imgs_sphinx/the_end.png" /><br />A smiling anthropomorphic Sphinx in an elegant red jacket during a curtain call of a Broadway show in the style of Salvador Dalì. Image rights: Dalle.</span></p>
+
+<p>That’s it for this tutorial! <br />
+You can now publish your repository to <a href="https://readthedocs.org/">readthedocs</a> itself, or in any static website hosting platform (like GitHub Pages).</p>
+
+<p>Suggested reads:</p>
+
+<ul>
+  <li><a href="https://sphinx-rtd-tutorial.readthedocs.io/en/latest/index.html">Read The Docs “How to”</a> - ReadTheDocs itself has written a tutorial on how to generate documentation using Sphinx. Go to the <em>Populating Our Documentation</em> section.</li>
+  <li><a href="https://sphinx-rtd-tutorial.readthedocs.io/en/latest/read-the-docs.html">Publishing the documentation to ReadTheDocs</a></li>
+</ul>
+
+
+
+    </article>
+    <span class="print-footer">Sphinx Tutorial - November 12, 2022 - </span>
+
+    <footer>
+  <hr class="slender">
+  <ul class="footer-links">
+    <li><a href="mailto:william.bonvini@outlook.com"><span class="icon-mail3"></span></a></li>    
+    
+      <li>
+        <a href="https://twitter.com/William_Bonvini"><span class="icon-twitter"></span></a>
+      </li>
+    
+      <li>
+        <a href="https://github.com/WilliamBonvini"><span class="icon-github"></span></a>
+      </li>
+    
+      <li>
+        <a href="https://www.linkedin.com/in/chttrshts/"><span class="icon-linkedin"></span></a>
+      </li>
+    
+      <li>
+        <a href="https://open.spotify.com/user/chattershuts?si=2e5e046c47f44908"><span class="icon-spotify"></span></a>
+      </li>
+      
+  </ul>
+  <div class="credits">
+<span>&copy; 2023 &nbsp;&nbsp;</span></br> <br>
+<span>This site was created with the <a href="//github.com/clayh53/tufte-jekyll">Tufte theme </a> in <a href="//jekyllrb.com">Jekyll</a>.</span> 
+</div>
+</footer>
+  </body>
+</html>

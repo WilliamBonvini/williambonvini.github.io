@@ -1,0 +1,17 @@
+I":<table>
+  <thead>
+    <tr>
+      <th>topic</th>
+      <th>OS</th>
+      <th>required modules</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Generate Sphinx documentation for a Python project with the <em>ReadTheDocs</em> theme.</td>
+      <td>Windows</td>
+      <td>venv</td>
+    </tr>
+  </tbody>
+</table>
+:ET
