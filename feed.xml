@@ -6,8 +6,8 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 31 Jan 2023 23:26:14 +0100</pubDate>
-    <lastBuildDate>Tue, 31 Jan 2023 23:26:14 +0100</lastBuildDate>
+    <pubDate>Tue, 07 Feb 2023 17:02:14 +0100</pubDate>
+    <lastBuildDate>Tue, 07 Feb 2023 17:02:14 +0100</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
@@ -502,6 +502,295 @@ q(s,a) &amp;amp;= \mathbb{E}[G_t|S_t=s, A_t=a] \\
         <category>Reinforcement</category>
         
         <category>Learning</category>
+        
+      </item>
+    
+      <item>
+        <title>Sphinx Tutorial</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;topic&lt;/th&gt;
+      &lt;th&gt;OS&lt;/th&gt;
+      &lt;th&gt;required modules&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Generate Sphinx documentation for a Python project with the &lt;em&gt;ReadTheDocs&lt;/em&gt; theme.&lt;/td&gt;
+      &lt;td&gt;Windows&lt;/td&gt;
+      &lt;td&gt;venv&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
+
+&lt;p&gt;&lt;label for=&quot;id&quot; class=&quot;margin-toggle&quot;&gt;⊕&lt;/label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;id&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;marginnote&quot;&gt;&lt;img class=&quot;fullwidth&quot; src=&quot;/assets/imgs_sphinx/sphinxdoc.png&quot; /&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Suppose that you have written a Python library and you want to share it with your colleagues. One of the most important things to do is to write a clear documentation. This tutorial will help you in achieving just that.&lt;/p&gt;
+
+&lt;p&gt;Our sample project’s structure will look like this&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;my_library
+	|
+	|---my_module.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my_module.py&lt;/code&gt; contains the following code:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyFirstClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot; class constructor &quot;&quot;&quot;&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
+        
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot; This method prints a welcome message &quot;&quot;&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot; This method prints a goodbye message &quot;&quot;&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Goodbye &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;in the end we will obtain an HTML page that documents all the methods we have written above.&lt;/p&gt;
+
+&lt;p&gt;Let’s start!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;create-a-virtual-environment-and-install-sphinx&quot;&gt;Create a virtual environment and install Sphinx&lt;/h1&gt;
+
+&lt;p&gt;&lt;br /&gt; &lt;label for=&quot;sphinx-installation&quot; class=&quot;margin-toggle&quot;&gt;⊕&lt;/label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;sphinx-installation&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;marginnote&quot;&gt;&lt;img class=&quot;fullwidth&quot; src=&quot;/assets/imgs_sphinx/sphinx-installation.png&quot; /&gt;&lt;br /&gt;A bunch of people installing a sphinx. Image rights: Dalle.&lt;/span&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Open a shell (you’ll be using this for all the next steps of this tutorial)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Go to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my_project&lt;/code&gt; folder&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Find the path of your python executable&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;import os, sys; print(os.path.dirname(sys.executable))&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;It will output a path (I’ll refer to it as &lt;em&gt;MY_PATH&lt;/em&gt;). &lt;br /&gt;
+Copy it, you will need it in the next step.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Create a virtual environment&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;MY_PATH/python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv &lt;span class=&quot;s2&quot;&gt;&quot;venv-mylibrary&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;activate your virtual environment by running&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;venv-mylibrary/Scripts/activate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Run the following command to install Sphinx and some auxiliary libraries.&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;sphinx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;5.3.0 sphinxcontrib.applehelp&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;1.0.3 sphinx-rtd-theme&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;1.1.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;Now you have added sphinx to the requirements of your virtual environment&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;sphinx-quickstart&quot;&gt;Sphinx Quickstart&lt;/h1&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;label for=&quot;id&quot; class=&quot;margin-toggle&quot;&gt;⊕&lt;/label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;id&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;marginnote&quot;&gt;&lt;img class=&quot;fullwidth&quot; src=&quot;/assets/imgs_sphinx/sphinx-quickstart.png&quot; /&gt;&lt;br /&gt;A sphinx quick-starting a race I guess. Image rights: Dalle.&lt;/span&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Create a folder where you’ll put your documentation files. I like to call it &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docs&lt;/code&gt;.&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;docs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Navigate to the docs directory&lt;/li&gt;
+  &lt;li&gt;Run the following command to create the necessary Sphinx files and directories:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sphinx-quickstart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This command will prompt you for some information about your project, let’s see them  in detail:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; Separate source and build directories (y/n) [n]:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I suggest you to write &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;y&lt;/code&gt;, It looks cleaner.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Project name:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I suggest you to use the name of the project’s root folder.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Author name&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Insert the author names in alphabetical order, separated by a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;,&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Project release &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you press enter, it will default to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.0.0&lt;/code&gt;, otherwise specify a different version.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Project languge &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;en]: 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Press enter, it will default to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;en&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finished: An initial directory structure has been created.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;my_library
+    |
+    | - docs 
+    |    |
+    |    | ---------- source
+    |    |				|
+    |    |				| - conf.py
+    |    |				| - index.rst
+    |    | - make.bat
+    |    | - Makefile
+    |
+    | - my_module.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;edit-confpy&quot;&gt;Edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;conf.py&lt;/code&gt;&lt;/h1&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;conf.py&lt;/code&gt; file let’s you specify what extensions, themes and auxiliary information to create your Sphinx documentation. 
+Modify it as shown below:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# find the row where html_theme is set and modify it as follows (if it doesn&apos;t exist create it from scratch)
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html_theme&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;sphinx_rtd_theme&apos;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# find the row that contains extensions = [] and modify it as follows:
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extensions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;sphinx.ext.autodoc&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;sphinx.ext.napoleon&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Add the path of the root directory of the library
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;abspath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;../../my_library&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;create-my_modulerst&quot;&gt;Create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my_module.rst&lt;/code&gt;&lt;/h1&gt;
+
+&lt;p&gt;At the same level of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.rst&lt;/code&gt; create a new file called  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my_module.rst&lt;/code&gt; (give it the name of the module you want to document in Sphinx).&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;my_library
+    |
+    | - docs 
+    |    |
+    |    | ---------- source
+    |    |				|
+    |    |				| - conf.py
+    |    |				| - index.rst
+    |	 |				| - my_module.rst
+    |    | - make.bat
+    |    | - Makefile
+    |
+    | - my_module.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And populate it as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-rst&quot;&gt;MyFirstClass
+================
+
+Description of MyClassName
+
+.. autoclass:: my_module.MyFirstClass
+   :members:
+   :undoc-members:
+   :show-inheritance:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will generate the documentation for each public method of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MyClassName&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Repeat this process for all the classes/modules you have.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;edit-indexrst&quot;&gt;Edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.rst&lt;/code&gt;&lt;/h1&gt;
+
+&lt;p&gt;Edit the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docs/source/index.rst&lt;/code&gt; to add to the table of content the link to the files you have just created.&lt;br /&gt;
+Mind the empty line before &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my_module&lt;/code&gt;, it is necessary!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-rst&quot;&gt;Welcome to MY_LIBRARY&apos;s documentation!
+=======================================
+
+This is a high level description of MY_LIBRARY, modify it as you like.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   
+   my_module
+
+
+.. _my_module: my_module.rst
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;generate-html&quot;&gt;Generate HTML&lt;/h1&gt;
+
+&lt;p&gt;Once you have populated all of the necessary files, you can generate the HTML documentation by running the following command from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docs&lt;/code&gt; directory:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;make html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will create the HTML documentation for your package in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docs/_build/html&lt;/code&gt; directory. &lt;br /&gt;
+You can view the documentation by opening the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.html&lt;/code&gt; in a web browser.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h1&gt;
+
+&lt;p&gt;&lt;label for=&quot;the_end&quot; class=&quot;margin-toggle&quot;&gt;⊕&lt;/label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;the_end&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;marginnote&quot;&gt;&lt;img class=&quot;fullwidth&quot; src=&quot;/assets/imgs_sphinx/the_end.png&quot; /&gt;&lt;br /&gt;A smiling anthropomorphic Sphinx in an elegant red jacket during a curtain call of a Broadway show in the style of Salvador Dalì. Image rights: Dalle.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s it for this tutorial! &lt;br /&gt;
+You can now publish your repository to &lt;a href=&quot;https://readthedocs.org/&quot;&gt;readthedocs&lt;/a&gt; itself, or in any static website hosting platform (like GitHub Pages).&lt;/p&gt;
+
+&lt;p&gt;Suggested reads:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://sphinx-rtd-tutorial.readthedocs.io/en/latest/index.html&quot;&gt;Read The Docs “How to”&lt;/a&gt; - ReadTheDocs itself has written a tutorial on how to generate documentation using Sphinx. Go to the &lt;em&gt;Populating Our Documentation&lt;/em&gt; section.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://sphinx-rtd-tutorial.readthedocs.io/en/latest/read-the-docs.html&quot;&gt;Publishing the documentation to ReadTheDocs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 12 Nov 2022 00:00:00 +0100</pubDate>
+        <link>/2022/11/12/sphinx.html</link>
+        <guid isPermaLink="true">/2022/11/12/sphinx.html</guid>
+        
+        <category>devops</category>
+        
         
       </item>
     
