@@ -2,6 +2,7 @@
 layout: post
 title: "Introduction to Reinforcement Learning"
 categories: Reinforcement Learning
+tags: reinforcement-learning
 ---
 
 # Reinforcement Learning

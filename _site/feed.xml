@@ -6,9 +6,102 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 31 Jan 2023 23:26:14 +0100</pubDate>
-    <lastBuildDate>Tue, 31 Jan 2023 23:26:14 +0100</lastBuildDate>
+    <pubDate>Fri, 03 Feb 2023 18:07:18 +0100</pubDate>
+    <lastBuildDate>Fri, 03 Feb 2023 18:07:18 +0100</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
+    
+      <item>
+        <title>Support Vector Machines</title>
+        <description>&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
+
+&lt;p&gt;Support Vector Machines (SVMs) are a type of machine learning algorithm that can be used for both &lt;em&gt;classification&lt;/em&gt; and &lt;em&gt;regression&lt;/em&gt; tasks. &lt;br /&gt;
+They are based on the concept of finding the maximum margin hyperplane, which separates data into different classes with the greatest possible distance. This makes SVMs particularly useful when working with high-dimensional and complex data, as they can effectively capture non-linear relationships and perform well in situations where the data is separable. &lt;br /&gt;
+They have been widely adopted in a variety of fields, including&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;text classification&lt;/li&gt;
+  &lt;li&gt;bioinformatics&lt;/li&gt;
+  &lt;li&gt;image classification&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;among others. &lt;br /&gt;
+In this blog post, we will provide a comprehensive overview of Support Vector Machines, including the mathematical foundations, the training process, and the various applications of this powerful machine learning tool.&lt;/p&gt;
+
+&lt;h1 id=&quot;intuition&quot;&gt;Intuition&lt;/h1&gt;
+
+&lt;figure class=&quot;fullwidth&quot;&gt;&lt;img src=&quot;/assets/imgs_svm/svm1.png&quot; /&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+&lt;p&gt;SVMs aim at building a binary classifier by finding the hyperplane that is able to separate data points with the highest possible &lt;em&gt;margin&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;the &lt;em&gt;margin&lt;/em&gt; is by definition the sum of the distance between the hyperplane and the closest data point of the first class, and the distance betwen the hyperplane and the closest data point of the second class.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 03 Feb 2023 18:07:01 +0100</pubDate>
+        <link>/2023/02/03/support_vector_machines.html</link>
+        <guid isPermaLink="true">/2023/02/03/support_vector_machines.html</guid>
+        
+        <category>classification</category>
+        
+        <category>regression</category>
+        
+        <category>machine-learning</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Beta_distribution</title>
+        <description>&lt;h1 id=&quot;beta-distribution&quot;&gt;Beta Distribution&lt;/h1&gt;
+
+&lt;p&gt;The Beta distribution is a continuous distribution that is often dubbed as the probability distribution of probabilities. This is because it can only take on value between $0$ and $1$.&lt;/p&gt;
+
+&lt;p&gt;It is used to infer the probability of an event when we have some information about the volumes of successes and failure.&lt;/p&gt;
+
+&lt;h3 id=&quot;probability-density-function&quot;&gt;Probability Density Function&lt;/h3&gt;
+
+&lt;p&gt;The probability density function of the Beta distribution is
+\(f(x)= \frac{x^{\alpha - 1}(1-x)^{\beta - 1}}{B(\alpha, \beta)}\)&lt;/p&gt;
+
+&lt;p&gt;where \(0\le x \le 1\), therefore it can be interpreted as a &lt;strong&gt;probability&lt;/strong&gt; as we mentioned above.&lt;/p&gt;
+
+&lt;p&gt;It is parametrised by two variables $\alpha$ and $\beta$ and \(B(\alpha, \beta)\) is the &lt;strong&gt;beta function&lt;/strong&gt; which is the normalising constant:
+\(B(\alpha, \beta)= \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}\)
+where \(\Gamma(\alpha)\) is the &lt;strong&gt;Gamma function&lt;/strong&gt;
+\(\Gamma(\alpha) = (\alpha - 1)!\)&lt;/p&gt;
+
+&lt;p&gt;Putting it all together:
+\(f(x) = \frac{x^{\alpha - 1}(1-x)^{\beta - 1}}{\frac{(\alpha-1)!(\beta-1)!}{(\alpha+\beta-1)!}}\)&lt;/p&gt;
+
+&lt;p&gt;Let’s now focus only on the numerator though, because the denominator is just a normalizing factor that is needed to bound the result in the interval \([0, 1]\).
+\(x^{\alpha - 1}(1-x)^{\beta - 1}\)
+You can thon of \(\alpha - 1\) as the number of successes and \(\beta - 1\) as the number of failures.&lt;/p&gt;
+
+&lt;p&gt;You can choose the \(\alpha\) and \(\beta\) parameters however you think they are supposed to be. If you think the probability of success is very high, let’s say \(90\%\), set \(90\) for \(\alpha\) and \(10\) for \(\beta\).&lt;/p&gt;
+
+&lt;h3 id=&quot;example&quot;&gt;Example&lt;/h3&gt;
+
+&lt;p&gt;Let’s say how likely someone would agree to go on a date with you follows a Beta distribution with \(\alpha=2\) and \(\beta=8\).  &lt;br /&gt;
+What is the probability that your success rate will be greater than \(50\%\)?
+\(P(X&amp;gt;0.5)=1-CDF(0.5)=0.01953\)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;imgs_beta/betaplot.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Link to full article:&lt;/p&gt;
+
+&lt;p&gt;https://towardsdatascience.com/beta-distribution-intuition-examples-and-derivation-cf00f4db57af&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;sarebbe carino se ci fosse una gif all’inizio&lt;/li&gt;
+  &lt;li&gt;spiegare che cavolo è una conjugate prior.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Mon, 23 Jan 2023 17:44:16 +0100</pubDate>
+        <link>/2023/01/23/beta_distribution.html</link>
+        <guid isPermaLink="true">/2023/01/23/beta_distribution.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Latent Dirichlet Allocation</title>
@@ -324,6 +417,8 @@ How do you do this? one way, known as collapsed Gibbs sampling, is the following
         <link>/2023/01/15/lda.html</link>
         <guid isPermaLink="true">/2023/01/15/lda.html</guid>
         
+        <category>topic-modeling</category>
+        
         
       </item>
     
@@ -497,6 +592,8 @@ q(s,a) &amp;amp;= \mathbb{E}[G_t|S_t=s, A_t=a] \\
         <pubDate>Sat, 03 Dec 2022 00:00:00 +0100</pubDate>
         <link>/reinforcement/learning/2022/12/03/Introduction-to-RL.html</link>
         <guid isPermaLink="true">/reinforcement/learning/2022/12/03/Introduction-to-RL.html</guid>
+        
+        <category>reinforcement-learning</category>
         
         
         <category>Reinforcement</category>

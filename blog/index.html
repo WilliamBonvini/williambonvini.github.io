@@ -9,8 +9,19 @@ title: blog
   <ul class="content-listing ">
     {% for post in site.posts %}      
         <li class="listing">
-          <hr class="slender">
+          <hr class="slender">  <!-- horizontal line -->
+          <!-- Blogpost hyperlinked name -->
           <a href="{{ post.url | prepend: site.baseurl }}"><h3 class="contrast">{{ post.title }}</h3></a>
+
+          <!-- tags -->
+          <br>
+          <span class="smaller">
+          [ {% for tag in post.tags %}
+            {{tag}};
+            {% endfor %} ]
+          </span>
+
+          <!-- Date -->
           <br><span class="smaller">{{ post.date | date: "%B %-d, %Y" }}</span><br/>
         </li>
     {% endfor %}
