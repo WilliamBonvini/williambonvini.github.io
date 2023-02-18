@@ -5,7 +5,7 @@ order: 1
 ---
 # Abstract
 
-{% marginfigure 'profile_pic' 'assets/imgs_home/profile_sea.jpg' 'A photograph of William in 2021, while dealing with some wind.' %}
+{% marginfigure 'profile_pic' 'assets/imgs_home/propic.jpg' 'William in 2023' %}
 
 Hi everyone, my name is William Bonvini an this is my personal website.     
 I'm a Computer Science graduate from Politecnico di Milano, currently interested in *Topic Modeling* and *Reinforcement Learning* applications.   
