@@ -6,9 +6,63 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 07 Feb 2023 17:02:14 +0100</pubDate>
-    <lastBuildDate>Tue, 07 Feb 2023 17:02:14 +0100</lastBuildDate>
+    <pubDate>Sat, 18 Feb 2023 15:13:35 +0100</pubDate>
+    <lastBuildDate>Sat, 18 Feb 2023 15:13:35 +0100</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
+    
+      <item>
+        <title>Beta_distribution</title>
+        <description>&lt;h1 id=&quot;beta-distribution&quot;&gt;Beta Distribution&lt;/h1&gt;
+
+&lt;p&gt;The Beta distribution is a continuous distribution that is often dubbed as the probability distribution of probabilities. This is because it can only take on value between $0$ and $1$.&lt;/p&gt;
+
+&lt;p&gt;It is used to infer the probability of an event when we have some information about the volumes of successes and failure.&lt;/p&gt;
+
+&lt;h3 id=&quot;probability-density-function&quot;&gt;Probability Density Function&lt;/h3&gt;
+
+&lt;p&gt;The probability density function of the Beta distribution is
+\(f(x)= \frac{x^{\alpha - 1}(1-x)^{\beta - 1}}{B(\alpha, \beta)}\)&lt;/p&gt;
+
+&lt;p&gt;where \(0\le x \le 1\), therefore it can be interpreted as a &lt;strong&gt;probability&lt;/strong&gt; as we mentioned above.&lt;/p&gt;
+
+&lt;p&gt;It is parametrised by two variables $\alpha$ and $\beta$ and \(B(\alpha, \beta)\) is the &lt;strong&gt;beta function&lt;/strong&gt; which is the normalising constant:
+\(B(\alpha, \beta)= \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}\)
+where \(\Gamma(\alpha)\) is the &lt;strong&gt;Gamma function&lt;/strong&gt;
+\(\Gamma(\alpha) = (\alpha - 1)!\)&lt;/p&gt;
+
+&lt;p&gt;Putting it all together:
+\(f(x) = \frac{x^{\alpha - 1}(1-x)^{\beta - 1}}{\frac{(\alpha-1)!(\beta-1)!}{(\alpha+\beta-1)!}}\)&lt;/p&gt;
+
+&lt;p&gt;Let’s now focus only on the numerator though, because the denominator is just a normalizing factor that is needed to bound the result in the interval \([0, 1]\).
+\(x^{\alpha - 1}(1-x)^{\beta - 1}\)
+You can thon of \(\alpha - 1\) as the number of successes and \(\beta - 1\) as the number of failures.&lt;/p&gt;
+
+&lt;p&gt;You can choose the \(\alpha\) and \(\beta\) parameters however you think they are supposed to be. If you think the probability of success is very high, let’s say \(90\%\), set \(90\) for \(\alpha\) and \(10\) for \(\beta\).&lt;/p&gt;
+
+&lt;h3 id=&quot;example&quot;&gt;Example&lt;/h3&gt;
+
+&lt;p&gt;Let’s say how likely someone would agree to go on a date with you follows a Beta distribution with \(\alpha=2\) and \(\beta=8\).  &lt;br /&gt;
+What is the probability that your success rate will be greater than \(50\%\)?
+\(P(X&amp;gt;0.5)=1-CDF(0.5)=0.01953\)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;imgs_beta/betaplot.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Link to full article:&lt;/p&gt;
+
+&lt;p&gt;https://towardsdatascience.com/beta-distribution-intuition-examples-and-derivation-cf00f4db57af&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;sarebbe carino se ci fosse una gif all’inizio&lt;/li&gt;
+  &lt;li&gt;spiegare che cavolo è una conjugate prior.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Mon, 23 Jan 2023 17:44:16 +0100</pubDate>
+        <link>/2023/01/23/beta_distribution.html</link>
+        <guid isPermaLink="true">/2023/01/23/beta_distribution.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Latent Dirichlet Allocation</title>
